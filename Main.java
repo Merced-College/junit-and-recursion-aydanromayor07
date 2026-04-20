@@ -46,6 +46,15 @@ public class Main {
         else return strCount(str.substring(sub.length()), sub);
     }
 
+    public static String stringClean(String str) {
+        if (str.length() <= 1) return str;
+
+        if (str.charAt(0) == str.charAt(1)) {
+            return stringClean(str.substring(1));
+        }
+        else return str.charAt(0) + stringClean(str.substring(1));
+    }
+
     @Test
     public void test() {
         Assert.assertEquals(count8(0),0);
@@ -71,5 +80,11 @@ public class Main {
         Assert.assertEquals(strCount("catcowcat", "dog"), 0);
         Assert.assertEquals(strCount("catcowdogcatcowdog", "dog"), 2);
         Assert.assertEquals(strCount("catcowcat", "c"), 3);
+
+        Assert.assertEquals(stringClean("yyzzza"), "yza");
+        Assert.assertEquals(stringClean("abbbcdd"), "abcd");
+        Assert.assertEquals(stringClean("Hello"), "Helo");
+        Assert.assertEquals(stringClean("xxyyxxyyxy"), "xyxyxy");
+        Assert.assertEquals(stringClean("a"), "a");
     }
 }
