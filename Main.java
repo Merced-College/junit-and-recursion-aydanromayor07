@@ -31,6 +31,14 @@ public class Main {
         else return countHi(str.substring(1));
     }
 
+    public static int countHi2(String str) {
+        if (str.length() < 2) return 0;
+
+        if (str.startsWith("xhi")) return countHi2(str.substring(3));
+        else if (str.startsWith("hi")) return 1 + countHi2(str.substring(2));
+        else return countHi2(str.substring(1));
+    }
+
     @Test
     public void test() {
         Assert.assertEquals(count8(0),0);
@@ -44,5 +52,11 @@ public class Main {
         Assert.assertEquals(countHi("xxhixx"), 1);
         Assert.assertEquals(countHi("xhixhi"), 2);
         Assert.assertEquals(countHi("hihihi"), 3);
+
+        Assert.assertEquals(countHi2("hi"), 1);
+        Assert.assertEquals(countHi2("ahixhi"), 1);
+        Assert.assertEquals(countHi2("ahibhi"), 2);
+        Assert.assertEquals(countHi2("xhixhi"), 0);
+        Assert.assertEquals(countHi2("hihixhi"), 2);
     }
 }
